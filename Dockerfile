@@ -32,6 +32,7 @@ RUN apt-get update && \
 	fire \
 	argschema \
 	tensorboardX \
+	tensorflow \
 	marshmallow
 
 WORKDIR /root/gans
@@ -46,8 +47,10 @@ RUN jupyter contrib nbextension install --system
 RUN jupyter nbextension enable collapsible_headings/main
 RUN jupyter nbextension enable spellchecker/main
 
+RUN pip3 install --trusted-host pypi.python.org tensorflow
 #RUN pip3 install --trusted-host pypi.python.org -r requirements.txt
 
-EXPOSE 8888
+EXPOSE 9999
+EXPOSE 6006 # for tensorboard
 
 CMD ["/bin/bash"]
